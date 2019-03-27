@@ -21,8 +21,6 @@ class MainMapViewController: UIViewController {
                 
             }
         }
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
