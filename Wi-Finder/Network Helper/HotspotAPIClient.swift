@@ -12,7 +12,6 @@ final class HotspotAPIClient {
     
     static func searchWifiSpot(completionHandler: @escaping (AppError?, [Hotspot]?) -> Void) {
         let endpointURLString = "https://data.cityofnewyork.us/api/views/varh-9tsp/rows.json?accessType=DOWNLOAD"
-        
         guard let url = URL(string: endpointURLString) else {
             completionHandler(AppError.badURL(endpointURLString), nil)
             return
@@ -33,7 +32,6 @@ final class HotspotAPIClient {
                     guard let wifiMatrix = wifiDictionary["data"] as? [[Any?]] else {print("Matrix Decode Failure"); return }
                     var populatingArray = [Hotspot]()
                     for array in wifiMatrix {
-                       
                         let lat = array[15] as? String ?? ""
                         let long = array[16] as? String ?? ""
                         let address = array[14] as? String ?? ""

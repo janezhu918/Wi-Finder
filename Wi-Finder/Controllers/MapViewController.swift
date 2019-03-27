@@ -14,8 +14,6 @@ class MainMapViewController: UIViewController {
     let mainview = MainMapView()
     private let locationManager = CLLocationManager()
     private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: 73.9485)
-    
-    
         private var myCurrentArea = MKCoordinateRegion() {
             didSet {
                 
