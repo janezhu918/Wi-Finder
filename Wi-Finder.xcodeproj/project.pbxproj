@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A502AADB224C0E9D00EE0708 /* WifiHotSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502AADA224C0E9D00EE0708 /* WifiHotSpot.swift */; };
 		A547E644224BDD4B00A74966 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E643224BDD4B00A74966 /* DetailViewController.swift */; };
 		A547E646224BDD5700A74966 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E645224BDD5700A74966 /* SavedViewController.swift */; };
 		A547E648224BDD6100A74966 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E647224BDD6100A74966 /* SavedView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A502AADA224C0E9D00EE0708 /* WifiHotSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WifiHotSpot.swift; path = ../../WifiHotSpot.swift; sourceTree = "<group>"; };
 		A547E643224BDD4B00A74966 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A547E645224BDD5700A74966 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		A547E647224BDD6100A74966 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				A547E650224BDDA300A74966 /* Hotspot.swift */,
+				A502AADA224C0E9D00EE0708 /* WifiHotSpot.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			files = (
 				A547E669224BE17A00A74966 /* UserDefaultsKey.swift in Sources */,
 				A547E654224BDDBF00A74966 /* DataPersistenceManager.swift in Sources */,
+				A502AADB224C0E9D00EE0708 /* WifiHotSpot.swift in Sources */,
 				A547E64C224BDD6C00A74966 /* MapView.swift in Sources */,
 				A547E651224BDDA400A74966 /* Hotspot.swift in Sources */,
 				A547E665224BE07500A74966 /* MainTabBar.swift in Sources */,

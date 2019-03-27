@@ -1,5 +1,5 @@
 //
-//  Hotspot.swift
+//  WifiHotSpot.swift
 //  Wi-Finder
 //
 //  Created by Jane Zhu on 3/27/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Hotspot: Codable {
+struct WifiHotSpot {
     
     let lat : String
     let long : String
@@ -33,11 +33,11 @@ struct Hotspot: Codable {
     
 }
 
-    //  element 12 has indicates if wifi is free
-    // element 13 shows network provider
-    // element 14 shows name of locations
-    // element 15 shows street address
-    // element 16 latitude
-    // element 17 longitude
-    // element 20 access point location (indoor/outdoor)
-    // element 21 wifi speed and price
+//  element 12 has indicates if wifi is free
+// element 13 shows network provider
+// element 14 shows name of locations
+// element 15 shows street address
+// element 16 latitude
+// element 17 longitude
+// element 20 access point location (indoor/outdoor)
+// element 21 wifi speed and price

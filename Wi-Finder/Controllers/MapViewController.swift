@@ -21,6 +21,8 @@ class MainMapViewController: UIViewController {
                 
             }
         }
+    
+    private var hotspots = [Hotspot]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,14 @@ class MainMapViewController: UIViewController {
         mainview.mainTableView.dataSource = self
         mainview.search.delegate = self
         mainview.mapView.delegate = self
+        
+        HotspotAPIClient.searchWifiSpot { (error, data) in
+            if let error = error {
+                print(error)
+            } else if let data = data {
+                self.hotspots = data
+            }
+        }
     }
     @objc private func currentLocationButton() {
          mainview.mapView.setCenter(myCurrentArea.center, animated: true)

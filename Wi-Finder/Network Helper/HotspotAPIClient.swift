@@ -9,11 +9,12 @@
 import Foundation
 
 final class HotspotAPIClient {
-    private var endpointURLString = "https://data.cityofnewyork.us/api/views/varh-9tsp/rows.json?accessType=DOWNLOAD"
     
-    static func searchWifiSpot(endPointURLString: String, completionHandler: @escaping (AppError?, [[Any?]]?) -> Void) {
-        guard let url = URL(string: endPointURLString) else {
-            completionHandler(AppError.badURL(endPointURLString), nil)
+    static func searchWifiSpot(completionHandler: @escaping (AppError?, [Hotspot]?) -> Void) {
+        let endpointURLString = "https://data.cityofnewyork.us/api/views/varh-9tsp/rows.json?accessType=DOWNLOAD"
+        
+        guard let url = URL(string: endpointURLString) else {
+            completionHandler(AppError.badURL(endpointURLString), nil)
             return
         }
         let request = URLRequest(url: url)
@@ -30,21 +31,20 @@ final class HotspotAPIClient {
                     let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
                     guard let wifiDictionary = jsonResponse as? [String : Any] else {print("Top Level Failed"); return }
                     guard let wifiMatrix = wifiDictionary["data"] as? [[Any?]] else {print("Matrix Decode Failure"); return }
-                    var populatingArray = [WifiHotSpot]()
+                    var populatingArray = [Hotspot]()
                     for array in wifiMatrix {
                        
-                        let lat = array[16] as? String ?? ""
-                        let long = array[17] as? String ?? ""
-                        let address = array[15] as? String ?? ""
-                        let ssid = array[23] as? String ?? ""
-                        let locationName = array[14] as? String ?? ""
-                        let remarks = array[21] as? String ?? ""
-                        let zipcode = array[31] as? String ?? ""
-                        let city = array[22] as? String ?? ""
-                        populatingArray.append(WifiHotSpot.init(lat: lat, long:long, address: address, ssid: ssid, locationName: locationName, remarks: remarks, zipcode: zipcode, city: city ))
+                        let lat = array[15] as? String ?? ""
+                        let long = array[16] as? String ?? ""
+                        let address = array[14] as? String ?? ""
+                        let ssid = array[22] as? String ?? ""
+                        let locationName = array[13] as? String ?? ""
+                        let remarks = array[20] as? String ?? ""
+                        let zipcode = array[30] as? String ?? ""
+                        let city = array[21] as? String ?? ""
+                        populatingArray.append(Hotspot.init(lat: lat, long:long, address: address, ssid: ssid, locationName: locationName, remarks: remarks, zipcode: zipcode, city: city ))
                     }
-                    print(populatingArray)
-                    completionHandler(nil,nil)
+                    completionHandler(nil,populatingArray)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }
