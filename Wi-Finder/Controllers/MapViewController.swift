@@ -27,21 +27,29 @@ class MainMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainview)
+        title = "WiFi Hotspots"
         self.view.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "locate"), style: .plain, target: self, action: #selector(currentLocationButton))
         mainview.mainTableView.delegate = self
         mainview.mainTableView.dataSource = self
         mainview.search.delegate = self
         mainview.mapView.delegate = self
-        
+        getHotspots()
+    }
+    
+    private func getHotspots() {
         HotspotAPIClient.searchWifiSpot { (error, data) in
             if let error = error {
                 print(error)
             } else if let data = data {
                 self.hotspots = data
+                DispatchQueue.main.async {
+                    self.mainview.mainTableView.reloadData()
+                }
             }
         }
     }
+    
     @objc private func currentLocationButton() {
          mainview.mapView.setCenter(myCurrentArea.center, animated: true)
     }
@@ -62,17 +70,24 @@ class MainMapViewController: UIViewController {
 
 extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return hotspots.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        let hotspotToSet = hotspots[indexPath.row]
+        cell.textLabel?.text = hotspotToSet.locationName
+        cell.detailTextLabel?.text = hotspotToSet.ssid
         return cell
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "WiFi Hotspots in this area"
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        detailVC.hotspot = hotspots[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
