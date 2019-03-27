@@ -11,18 +11,10 @@ import MapKit
 import CoreLocation
 
 class MainMapViewController: UIViewController {
-   
     let mainview = MainMapView()
-<<<<<<< HEAD
-    private let locationManager = CLLocationManager()
-    private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: 73.9485)
-        private var myCurrentArea = MKCoordinateRegion() {
-=======
-    
     private let locationManager = CLLocationManager()
     private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: -73.9485)
     private var myCurrentArea = MKCoordinateRegion() {
->>>>>>> a3f337e9072dbdd449e2671f52ee00b8acf1169c
             didSet {
                 
             }
