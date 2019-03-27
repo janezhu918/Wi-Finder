@@ -55,7 +55,6 @@ class MainMapView: UIView {
         search.translatesAutoresizingMaskIntoConstraints = false
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mainTableView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             search.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor), search.leadingAnchor.constraint(equalTo: leadingAnchor), search.trailingAnchor.constraint(equalTo: trailingAnchor),
             mapView.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 22), mapView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 33), mapView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -33), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
