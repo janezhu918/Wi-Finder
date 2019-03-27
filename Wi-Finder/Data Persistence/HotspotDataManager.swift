@@ -22,7 +22,7 @@ final class HotspotDataManager {
         } catch {
          print(error.localizedDescription)
         }
-     
+
     }
     
     static func getHotspots() -> [Hotspot] {
@@ -49,7 +49,7 @@ final class HotspotDataManager {
         hotspots.append(hotspot)
         saveHotspot()
     }
-    
+
     static func deleteHotspot(atIndex: Int) {
         hotspots.remove(at: atIndex)
        saveHotspot()
