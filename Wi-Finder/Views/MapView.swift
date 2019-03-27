@@ -15,7 +15,7 @@ class MainMapView: UIView {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
         searchBar.layer.cornerRadius = 10.0
-        searchBar.placeholder = "Search"
+        searchBar.placeholder = "Search for Hotspots"
         return searchBar
         
     }()
@@ -31,7 +31,6 @@ class MainMapView: UIView {
         mainTV = UITableView(frame: .zero, style: .plain)
         mainTV.backgroundColor = #colorLiteral(red: 0.7233230472, green: 0.9350265861, blue: 0.8718754649, alpha: 1)
         mainTV.sectionIndexColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-       // mainTV.rowHeight = 150
         mainTV.allowsSelection = false
         return mainTV
     }()
@@ -59,8 +58,8 @@ class MainMapView: UIView {
         
         NSLayoutConstraint.activate([
             search.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor), search.leadingAnchor.constraint(equalTo: leadingAnchor), search.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 0), mapView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0), mapView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
-            mainTableView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 11), mainTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0), mainTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0), mainTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            mapView.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 22), mapView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 33), mapView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -33), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
+            mainTableView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 11), mainTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16), mainTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16), mainTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150)
             ])
     }
     
