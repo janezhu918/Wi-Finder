@@ -7,18 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A547E644224BDD4B00A74966 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E643224BDD4B00A74966 /* DetailViewController.swift */; };
+		A547E646224BDD5700A74966 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E645224BDD5700A74966 /* SavedViewController.swift */; };
+		A547E648224BDD6100A74966 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E647224BDD6100A74966 /* SavedView.swift */; };
+		A547E64A224BDD6600A74966 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E649224BDD6600A74966 /* DetailView.swift */; };
+		A547E64C224BDD6C00A74966 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E64B224BDD6C00A74966 /* MapView.swift */; };
+		A547E651224BDDA400A74966 /* Hotspot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E650224BDDA300A74966 /* Hotspot.swift */; };
+		A547E654224BDDBF00A74966 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E653224BDDBF00A74966 /* DataPersistenceManager.swift */; };
+		A547E659224BDDEA00A74966 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E658224BDDEA00A74966 /* NetworkHelper.swift */; };
+		A547E65C224BDE0200A74966 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E65B224BDE0200A74966 /* AppError.swift */; };
+		A547E65E224BDE1300A74966 /* HotspotAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E65D224BDE1300A74966 /* HotspotAPIClient.swift */; };
+		A547E660224BDF2D00A74966 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E65F224BDF2D00A74966 /* Date+Extensions.swift */; };
+		A547E663224BDF7000A74966 /* HotspotDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E662224BDF7000A74966 /* HotspotDataManager.swift */; };
+		A547E665224BE07500A74966 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E664224BE07500A74966 /* MainTabBar.swift */; };
+		A547E669224BE17A00A74966 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E668224BE17A00A74966 /* UserDefaultsKey.swift */; };
 		A579B93A224BC86C003525F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579B939224BC86C003525F9 /* AppDelegate.swift */; };
-		A579B93C224BC86C003525F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579B93B224BC86C003525F9 /* ViewController.swift */; };
-		A579B93F224BC86C003525F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A579B93D224BC86C003525F9 /* Main.storyboard */; };
+		A579B93C224BC86C003525F9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579B93B224BC86C003525F9 /* MapViewController.swift */; };
 		A579B941224BC86F003525F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A579B940224BC86F003525F9 /* Assets.xcassets */; };
 		A579B944224BC86F003525F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A579B942224BC86F003525F9 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A547E643224BDD4B00A74966 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A547E645224BDD5700A74966 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
+		A547E647224BDD6100A74966 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		A547E649224BDD6600A74966 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		A547E64B224BDD6C00A74966 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A547E650224BDDA300A74966 /* Hotspot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotspot.swift; sourceTree = "<group>"; };
+		A547E653224BDDBF00A74966 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		A547E658224BDDEA00A74966 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		A547E65B224BDE0200A74966 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		A547E65D224BDE1300A74966 /* HotspotAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotspotAPIClient.swift; sourceTree = "<group>"; };
+		A547E65F224BDF2D00A74966 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Extensions.swift"; path = "../Date+Extensions.swift"; sourceTree = "<group>"; };
+		A547E662224BDF7000A74966 /* HotspotDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotspotDataManager.swift; sourceTree = "<group>"; };
+		A547E664224BE07500A74966 /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		A547E668224BE17A00A74966 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		A579B936224BC86C003525F9 /* Wi-Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wi-Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A579B939224BC86C003525F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A579B93B224BC86C003525F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A579B93E224BC86C003525F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A579B93B224BC86C003525F9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A579B940224BC86F003525F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A579B943224BC86F003525F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A579B945224BC86F003525F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,6 +61,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A547E64D224BDD7200A74966 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A547E64B224BDD6C00A74966 /* MapView.swift */,
+				A547E649224BDD6600A74966 /* DetailView.swift */,
+				A547E647224BDD6100A74966 /* SavedView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A547E64E224BDD7A00A74966 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A579B93B224BC86C003525F9 /* MapViewController.swift */,
+				A547E643224BDD4B00A74966 /* DetailViewController.swift */,
+				A547E645224BDD5700A74966 /* SavedViewController.swift */,
+				A547E664224BE07500A74966 /* MainTabBar.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A547E64F224BDD8800A74966 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A579B939224BC86C003525F9 /* AppDelegate.swift */,
+				A579B942224BC86F003525F9 /* LaunchScreen.storyboard */,
+				A547E668224BE17A00A74966 /* UserDefaultsKey.swift */,
+				A579B940224BC86F003525F9 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A547E652224BDDAC00A74966 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A547E650224BDDA300A74966 /* Hotspot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A547E655224BDDCD00A74966 /* Data Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A547E662224BDF7000A74966 /* HotspotDataManager.swift */,
+				A547E653224BDDBF00A74966 /* DataPersistenceManager.swift */,
+			);
+			path = "Data Persistence";
+			sourceTree = "<group>";
+		};
+		A547E65A224BDDF800A74966 /* Network Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A547E658224BDDEA00A74966 /* NetworkHelper.swift */,
+				A547E65B224BDE0200A74966 /* AppError.swift */,
+				A547E65D224BDE1300A74966 /* HotspotAPIClient.swift */,
+			);
+			path = "Network Helper";
+			sourceTree = "<group>";
+		};
+		A547E661224BDF3100A74966 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A547E65F224BDF2D00A74966 /* Date+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A579B92D224BC86C003525F9 = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +147,13 @@
 		A579B938224BC86C003525F9 /* Wi-Finder */ = {
 			isa = PBXGroup;
 			children = (
-				A579B939224BC86C003525F9 /* AppDelegate.swift */,
-				A579B93B224BC86C003525F9 /* ViewController.swift */,
-				A579B93D224BC86C003525F9 /* Main.storyboard */,
-				A579B940224BC86F003525F9 /* Assets.xcassets */,
-				A579B942224BC86F003525F9 /* LaunchScreen.storyboard */,
+				A547E65A224BDDF800A74966 /* Network Helper */,
+				A547E655224BDDCD00A74966 /* Data Persistence */,
+				A547E652224BDDAC00A74966 /* Models */,
+				A547E64D224BDD7200A74966 /* Views */,
+				A547E64E224BDD7A00A74966 /* Controllers */,
+				A547E661224BDF3100A74966 /* Extensions */,
+				A547E64F224BDD8800A74966 /* Supporting Files */,
 				A579B945224BC86F003525F9 /* Info.plist */,
 			);
 			path = "Wi-Finder";
@@ -124,7 +219,6 @@
 			files = (
 				A579B944224BC86F003525F9 /* LaunchScreen.storyboard in Resources */,
 				A579B941224BC86F003525F9 /* Assets.xcassets in Resources */,
-				A579B93F224BC86C003525F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +229,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A579B93C224BC86C003525F9 /* ViewController.swift in Sources */,
+				A547E669224BE17A00A74966 /* UserDefaultsKey.swift in Sources */,
+				A547E654224BDDBF00A74966 /* DataPersistenceManager.swift in Sources */,
+				A547E64C224BDD6C00A74966 /* MapView.swift in Sources */,
+				A547E651224BDDA400A74966 /* Hotspot.swift in Sources */,
+				A547E665224BE07500A74966 /* MainTabBar.swift in Sources */,
+				A547E644224BDD4B00A74966 /* DetailViewController.swift in Sources */,
+				A547E659224BDDEA00A74966 /* NetworkHelper.swift in Sources */,
+				A547E64A224BDD6600A74966 /* DetailView.swift in Sources */,
+				A547E65E224BDE1300A74966 /* HotspotAPIClient.swift in Sources */,
+				A547E648224BDD6100A74966 /* SavedView.swift in Sources */,
+				A547E660224BDF2D00A74966 /* Date+Extensions.swift in Sources */,
+				A547E663224BDF7000A74966 /* HotspotDataManager.swift in Sources */,
+				A547E65C224BDE0200A74966 /* AppError.swift in Sources */,
+				A579B93C224BC86C003525F9 /* MapViewController.swift in Sources */,
+				A547E646224BDD5700A74966 /* SavedViewController.swift in Sources */,
 				A579B93A224BC86C003525F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +251,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A579B93D224BC86C003525F9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A579B93E224BC86C003525F9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A579B942224BC86F003525F9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
