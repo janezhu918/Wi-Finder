@@ -11,11 +11,13 @@ import UIKit
 class DetailViewController: UIViewController {
     
     let detailView = DetailView()
+    
+    public var hotspot: Hotspot!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
-        detailView.infoTextView.text = "Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing "
+        detailView.infoTextView.text = "Address:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)"
         detailView.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         detailView.screenshotButton.addTarget(self, action: #selector(screenshotButtonPressed), for: .touchUpInside)
         
