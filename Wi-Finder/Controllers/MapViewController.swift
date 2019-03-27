@@ -11,18 +11,19 @@ import MapKit
 import CoreLocation
 
 class MainMapViewController: UIViewController {
+   
     let mainview = MainMapView()
+    
     private let locationManager = CLLocationManager()
-    private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: 73.9485)
-    
-    
-        private var myCurrentArea = MKCoordinateRegion() {
+    private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: -73.9485)
+    private var myCurrentArea = MKCoordinateRegion() {
             didSet {
                 
             }
         }
     
     private var hotspots = [Hotspot]()
+    private var annotations = [MKPointAnnotation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,23 +36,29 @@ class MainMapViewController: UIViewController {
         mainview.search.delegate = self
         mainview.mapView.delegate = self
         getHotspots()
+        checkLocationServices()
     }
     
     private func getHotspots() {
-        HotspotAPIClient.searchWifiSpot { (error, data) in
+        HotspotAPIClient.searchWifiSpot { (error, hotspots, annotations) in
             if let error = error {
                 print(error)
-            } else if let data = data {
-                self.hotspots = data
+            } else if let hotspots = hotspots {
+                self.hotspots = hotspots
                 DispatchQueue.main.async {
                     self.mainview.mainTableView.reloadData()
                 }
+                if let annotations = annotations {
+                    self.annotations = annotations
+                    self.mainview.mapView.addAnnotations(annotations)
+                    let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
+                    DispatchQueue.main.async {
+                                            self.mainview.mapView.setRegion(region, animated: false)
+                    }
+//                    self.mainview.mapView.setRegion(annotations, animated: <#T##Bool#>)
+                }
             }
         }
-    }
-    
-    @objc private func currentLocationButton() {
-         mainview.mapView.setCenter(myCurrentArea.center, animated: true)
     }
     
     func checkLocationServices() {
@@ -66,6 +73,11 @@ class MainMapViewController: UIViewController {
             mainview.mapView.showsUserLocation = true
         }
     }
+    
+    @objc private func currentLocationButton() {
+         mainview.mapView.setCenter(myCurrentArea.center, animated: true)
+    }
+
 }
 
 extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
