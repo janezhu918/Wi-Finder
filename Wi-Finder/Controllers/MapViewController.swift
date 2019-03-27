@@ -11,14 +11,12 @@ import MapKit
 import CoreLocation
 
 class MainMapViewController: UIViewController {
-   
     let mainview = MainMapView()
-    
     private let locationManager = CLLocationManager()
     private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: -73.9485)
     private var myCurrentArea = MKCoordinateRegion() {
             didSet {
-                
+               self.mainview.mapView.reloadInputViews()
             }
         }
     
@@ -35,6 +33,7 @@ class MainMapViewController: UIViewController {
         mainview.mainTableView.dataSource = self
         mainview.search.delegate = self
         mainview.mapView.delegate = self
+        locationManager.delegate = self
         getHotspots()
         checkLocationServices()
     }
