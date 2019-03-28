@@ -23,6 +23,10 @@ let savedView = SavedView()
         view.addSubview(savedView)
         setupTableView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        savedHotspots = HotspotDataManager.getHotspots()
+    }
 
     
     private func  setupTableView() {
