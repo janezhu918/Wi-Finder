@@ -15,16 +15,14 @@ class LaunchViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         self.launchView.launchImage.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-        self.launchView.launchImage.layer.cornerRadius = self.launchView.launchImage.frame.size.width / 2
         self.launchView.launchImage.clipsToBounds = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.addSubview(launchView)
-        self.view.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-        self.launchView.launchImage.transform = CGAffineTransform(rotationAngle: .pi)
-        
+        self.view.backgroundColor = #colorLiteral(red: 0.9880706668, green: 0.8646354079, blue: 0.5588870645, alpha: 1)
+        self.view.isOpaque = true
 
       
     }
