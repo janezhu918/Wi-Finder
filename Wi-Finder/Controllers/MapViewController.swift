@@ -21,6 +21,7 @@ class MainMapViewController: UIViewController {
         }
     
     private var hotspots = [Hotspot]()
+    private var visableOnMapHotSpots = [Hotspot]()
     private var annotations = [MKPointAnnotation]()
 
     override func viewDidLoad() {
@@ -75,6 +76,20 @@ class MainMapViewController: UIViewController {
     
     @objc private func currentLocationButton() {
          mainview.mapView.setCenter(myCurrentArea.center, animated: true)
+        let myLocation = CLLocation(latitude: myCurrentArea.center.latitude, longitude: myCurrentArea.center.longitude)
+        updateResultsWithinRadiusOfCurrentLocation(myLocation: myLocation)
+        
+    }
+    
+    
+    func updateResultsWithinRadiusOfCurrentLocation(myLocation : CLLocation) {
+        for hotspot in hotspots {
+            if myLocation.distance(from: CLLocation(latitude: Double(hotspot.lat) ?? 0.0, longitude: Double(hotspot.long) ?? 0.0)) < 200 {
+                visableOnMapHotSpots.append(hotspot)
+            }
+        }
+
+
     }
 
 }
