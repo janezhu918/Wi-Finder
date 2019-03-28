@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09DB68C4224C78BF0079A58B /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DB68C3224C78BF0079A58B /* UIViewController+Alerts.swift */; };
 		A547E644224BDD4B00A74966 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E643224BDD4B00A74966 /* DetailViewController.swift */; };
 		A547E646224BDD5700A74966 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E645224BDD5700A74966 /* SavedViewController.swift */; };
 		A547E648224BDD6100A74966 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E647224BDD6100A74966 /* SavedView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09DB68C3224C78BF0079A58B /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		A547E643224BDD4B00A74966 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A547E645224BDD5700A74966 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		A547E647224BDD6100A74966 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		A547E661224BDF3100A74966 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				09DB68C3224C78BF0079A58B /* UIViewController+Alerts.swift */,
 				A547E65F224BDF2D00A74966 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
@@ -242,6 +245,7 @@
 				A547E660224BDF2D00A74966 /* Date+Extensions.swift in Sources */,
 				A547E663224BDF7000A74966 /* HotspotDataManager.swift in Sources */,
 				A547E65C224BDE0200A74966 /* AppError.swift in Sources */,
+				09DB68C4224C78BF0079A58B /* UIViewController+Alerts.swift in Sources */,
 				A579B93C224BC86C003525F9 /* MapViewController.swift in Sources */,
 				A547E646224BDD5700A74966 /* SavedViewController.swift in Sources */,
 				A579B93A224BC86C003525F9 /* AppDelegate.swift in Sources */,
@@ -383,13 +387,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WGF5N989LK;
+				DEVELOPMENT_TEAM = 9DV268QUJB;
 				INFOPLIST_FILE = "Wi-Finder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.janezhu.www.Wi-Finder";
+				PRODUCT_BUNDLE_IDENTIFIER = "-com.janezhu.www.Wi-Finder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -401,13 +405,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WGF5N989LK;
+				DEVELOPMENT_TEAM = 9DV268QUJB;
 				INFOPLIST_FILE = "Wi-Finder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.janezhu.www.Wi-Finder";
+				PRODUCT_BUNDLE_IDENTIFIER = "-com.janezhu.www.Wi-Finder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

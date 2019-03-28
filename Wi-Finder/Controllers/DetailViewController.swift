@@ -20,15 +20,28 @@ class DetailViewController: UIViewController {
         detailView.infoTextView.text = "Address:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)"
         detailView.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         detailView.screenshotButton.addTarget(self, action: #selector(screenshotButtonPressed), for: .touchUpInside)
-        
     }
 
     @objc private func saveButtonPressed() {
-        print("save button pressed")
+        if let newHotspot = hotspot {
+         HotspotDataManager.addHotspot(hotspot: newHotspot)
+            showAlert(title: nil, message: "wifi saved", actionTitle: "OK")
+        }
     }
     
     @objc private func screenshotButtonPressed() {
-        print("screenshot button pressed")
+        var screenShotImage: UIImage!
+        let layer = UIApplication.shared.keyWindow?.layer
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(detailView.mapKitView.frame.size, false, scale)
+        guard let context = UIGraphicsGetCurrentContext() else  { return }
+        layer?.render(in: context)
+        screenShotImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        if let image = screenShotImage {
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            showAlert(title: nil, message: "image saved", actionTitle: "ok")
+        }
     }
     
 }
