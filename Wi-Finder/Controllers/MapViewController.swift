@@ -22,6 +22,13 @@ class MainMapViewController: UIViewController {
     
     private var hotspots = [Hotspot]()
     private var annotations = [MKPointAnnotation]()
+    private var searchHotspots = [Hotspot]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.mainview.mainTableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +61,6 @@ class MainMapViewController: UIViewController {
                     DispatchQueue.main.async {
                                             self.mainview.mapView.setRegion(region, animated: false)
                     }
-//                    self.mainview.mapView.setRegion(annotations, animated: <#T##Bool#>)
                 }
             }
         }
@@ -75,6 +81,7 @@ class MainMapViewController: UIViewController {
     
     @objc private func currentLocationButton() {
          mainview.mapView.setCenter(myCurrentArea.center, animated: true)
+        
     }
 
 }
@@ -147,5 +154,16 @@ extension MainMapViewController: MKMapViewDelegate {
 extension MainMapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        self.searchHotspots.removeAll()
+       guard let text = searchBar.text, let number = Int(text) else {
+        showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
+            return
+        }
+        for hotspot in hotspots where hotspot.zipcode == String(number) {
+          self.searchHotspots.append(hotspot)
+            var annotation: MKAnnotation!
+        
+              self.mainview.mainTableView.reloadData()
+        }
     }
 }
