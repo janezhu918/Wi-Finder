@@ -24,7 +24,9 @@ class DetailViewController: UIViewController {
     }
 
     @objc private func saveButtonPressed() {
-        print("save button pressed")
+        if let newHotspot = hotspot {
+         HotspotDataManager.addHotspot(hotspot: newHotspot)
+        }
     }
     
     @objc private func screenshotButtonPressed() {
