@@ -16,6 +16,7 @@ An app that allows users to find free wifi hotspots in New York City.
 ![IMG_2109](https://user-images.githubusercontent.com/43827399/55129710-837da980-50ee-11e9-95e1-9b03b0a6bf6b.jpg)
 ![IMG_2111](https://user-images.githubusercontent.com/43827399/55129711-837da980-50ee-11e9-9d9a-ba9b346f55fd.jpg)
 
+<img width="169" alt="Screen Shot 2019-03-08 at 12 45 06 PM" src="https://user-images.githubusercontent.com/43827399/55129711-837da980-50ee-11e9-9d9a-ba9b346f55fd.jpg">
 
 
 ## Links
