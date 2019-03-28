@@ -29,8 +29,8 @@ class MainMapView: UIView {
     public lazy var mainTableView: UITableView = {
         var mainTV = UITableView()
         mainTV = UITableView(frame: .zero, style: .plain)
-        mainTV.backgroundColor = #colorLiteral(red: 0.7233230472, green: 0.9350265861, blue: 0.8718754649, alpha: 1)
-        mainTV.sectionIndexColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        mainTV.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        mainTV.sectionIndexColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
         return mainTV
     }()
     
