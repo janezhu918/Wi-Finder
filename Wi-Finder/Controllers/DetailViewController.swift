@@ -10,11 +10,8 @@ import UIKit
 import MapKit
 
 class DetailViewController: UIViewController {
-    
     let detailView = DetailView()
-    
     public var hotspot: Hotspot!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)

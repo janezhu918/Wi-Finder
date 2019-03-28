@@ -12,15 +12,15 @@ import CoreLocation
 
 
 class MainMapViewController: UIViewController {
-  
+    
     let mainview = MainMapView()
     private let locationManager = CLLocationManager()
     private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: -73.9485)
     private var myCurrentArea = MKCoordinateRegion() {
-            didSet {
-               self.mainview.mapView.reloadInputViews()
-            }
+        didSet {
+            self.mainview.mapView.reloadInputViews()
         }
+    }
     
     private var hotspots = [Hotspot]()
     private var annotations = [MKPointAnnotation]()
@@ -44,7 +44,7 @@ class MainMapViewController: UIViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainview)
@@ -76,7 +76,7 @@ class MainMapViewController: UIViewController {
                     self.mainview.mapView.addAnnotations(self.searchAnnotations)
                     let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
                     DispatchQueue.main.async {
-                                            self.mainview.mapView.setRegion(region, animated: false)
+                        self.mainview.mapView.setRegion(region, animated: false)
                     }
                 }
             }
@@ -97,7 +97,7 @@ class MainMapViewController: UIViewController {
     }
     
     @objc private func currentLocationButton() {
-         mainview.mapView.setCenter(myCurrentArea.center, animated: true)
+        mainview.mapView.setCenter(myCurrentArea.center, animated: true)
         let myLocation = CLLocation(latitude: myCurrentArea.center.latitude, longitude: myCurrentArea.center.longitude)
         updateResultsWithinRadiusOfCurrentLocation(myLocation: myLocation)
         
@@ -111,7 +111,7 @@ class MainMapViewController: UIViewController {
             }
         }
     }
-
+    
 }
 
 extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
@@ -119,13 +119,19 @@ extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
         return searchHotspots.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = UITableViewCell()
-            let hotspotToSet = searchHotspots[indexPath.row]
-            cell.textLabel?.text = hotspotToSet.locationName
-            cell.detailTextLabel?.text = hotspotToSet.ssid
-            return cell
-        }
-     
+        let cell = UITableViewCell()
+        let hotspotToSet = searchHotspots[indexPath.row]
+        cell.textLabel?.text = hotspotToSet.locationName
+        cell.detailTextLabel?.text = hotspotToSet.ssid
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        cell.textLabel?.shadowColor = #colorLiteral(red: 0.9705753922, green: 0.7638127208, blue: 0.4173654318, alpha: 1)
+        cell.textLabel?.shadowOffset = CGSize(width: 0, height: 2)
+        cell.textLabel?.textColor = .black
+        cell.selectionStyle = .none
+        cell.backgroundColor = #colorLiteral(red: 1, green: 0.8813299537, blue: 0.5384758115, alpha: 1)
+        return cell
+    }
+    
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -188,17 +194,17 @@ extension MainMapViewController: UISearchBarDelegate {
         self.searchHotspots.removeAll()
         self.searchAnnotations.removeAll()
         
-       guard let text = searchBar.text, let number = Int(text) else {
-        showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
+        guard let text = searchBar.text, let number = Int(text) else {
+            showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
             return
         }
         searchHotspots = hotspots.filter{$0.zipcode == String(number)}
-      searchAnnotations = searchHotspots.map {
+        searchAnnotations = searchHotspots.map {
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: Double($0.lat) ?? 0.0, longitude: Double($0.long) ?? 0.0)
-           return annotation
+            return annotation
         }
-        }
-  
     }
+    
+}
 
