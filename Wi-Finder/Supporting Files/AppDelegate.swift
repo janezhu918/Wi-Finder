@@ -11,17 +11,29 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var launchScreenVC = LaunchViewController()
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        window = UIWindow.init(frame: UIScreen.main.bounds)
-        window?.rootViewController = MainTabBar()
-        window?.makeKeyAndVisible()
-        
+        launchScreen()
         return true
+    }
+    
+    private func launchScreen() {
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = launchScreenVC
+        self.window?.makeKeyAndVisible()
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(dismissLaunchScreen), userInfo: nil, repeats: false)
+    }
+    
+    @objc func dismissLaunchScreen() {
+
+                window = UIWindow.init(frame: UIScreen.main.bounds)
+                window?.rootViewController = MainTabBar()
+                window?.makeKeyAndVisible()
+               self.window?.tintColor = #colorLiteral(red: 0.9980230927, green: 0.5507860184, blue: 0.5175441504, alpha: 1)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
