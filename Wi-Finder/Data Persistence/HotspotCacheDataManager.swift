@@ -11,9 +11,9 @@ import Foundation
 final class HotspotCacheDataManager {
     private init() {}
     private static let filename = "HotspotCache.plist"
-    private static var hotspots = [Hotspot]()
+//    private static var hotspots = [Hotspot]()
     
-    static func saveToCache() {
+    static func saveToCache(hotspots: [Hotspot]) {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
         do {
             let data = try PropertyListEncoder().encode(hotspots)
@@ -24,6 +24,7 @@ final class HotspotCacheDataManager {
     }
     
     static func loadFromCache() -> [Hotspot] {
+        var hotspots = [Hotspot]()
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {

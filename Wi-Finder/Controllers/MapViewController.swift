@@ -22,7 +22,11 @@ class MainMapViewController: UIViewController {
         }
     }
     
-    private var hotspots = [Hotspot]()
+    private var hotspots = [Hotspot]() {
+        didSet {
+            mainview.mainTableView.reloadData()
+        }
+    }
     private var annotations = [MKPointAnnotation]()
     private var searchAnnotations = [MKPointAnnotation]() {
         didSet {
@@ -48,6 +52,7 @@ class MainMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainview)
+        print(DataPersistenceManager.documentsDirectory())
         setupKeyboardToolbar()
         title = "WiFi Hotspots"
         self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -57,8 +62,16 @@ class MainMapViewController: UIViewController {
         mainview.search.delegate = self
         mainview.mapView.delegate = self
         locationManager.delegate = self
-        getHotspots()
         checkLocationServices()
+        loadHotspots()
+    }
+    
+    private func loadHotspots() {
+        hotspots = HotspotCacheDataManager.loadFromCache()
+        searchHotspots = hotspots
+        if hotspots.isEmpty {
+            getHotspots()
+        }
     }
     
     private func getHotspots() {
@@ -68,6 +81,7 @@ class MainMapViewController: UIViewController {
             } else if let hotspots = hotspots {
                 self.hotspots = hotspots
                 self.searchHotspots = hotspots
+                HotspotCacheDataManager.saveToCache(hotspots: hotspots)
                 DispatchQueue.main.async {
                     self.mainview.mainTableView.reloadData()
                 }
