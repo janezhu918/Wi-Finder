@@ -14,7 +14,7 @@ class MainMapView: UIView {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
         searchBar.layer.cornerRadius = 10.0
-        searchBar.placeholder = "Search for Hotspots"
+        searchBar.placeholder = "Search for hotspots by zipcode"
         searchBar.barTintColor = #colorLiteral(red: 1, green: 0.8813299537, blue: 0.5384758115, alpha: 1)
         return searchBar
         

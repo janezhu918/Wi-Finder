@@ -10,6 +10,7 @@
 		05F1AF78224D123D0051D4FC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1AF77224D123D0051D4FC /* LaunchViewController.swift */; };
 		05F1AF7A224D12790051D4FC /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1AF79224D12790051D4FC /* LaunchView.swift */; };
 		09DB68C4224C78BF0079A58B /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DB68C3224C78BF0079A58B /* UIViewController+Alerts.swift */; };
+		A502AAFD224D2FD800EE0708 /* HotspotCacheDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A502AAFC224D2FD800EE0708 /* HotspotCacheDataManager.swift */; };
 		A547E644224BDD4B00A74966 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E643224BDD4B00A74966 /* DetailViewController.swift */; };
 		A547E646224BDD5700A74966 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E645224BDD5700A74966 /* SavedViewController.swift */; };
 		A547E648224BDD6100A74966 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E647224BDD6100A74966 /* SavedView.swift */; };
@@ -34,6 +35,7 @@
 		05F1AF77224D123D0051D4FC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		05F1AF79224D12790051D4FC /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		09DB68C3224C78BF0079A58B /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
+		A502AAFC224D2FD800EE0708 /* HotspotCacheDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotspotCacheDataManager.swift; sourceTree = "<group>"; };
 		A547E643224BDD4B00A74966 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A547E645224BDD5700A74966 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		A547E647224BDD6100A74966 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				A547E662224BDF7000A74966 /* HotspotDataManager.swift */,
+				A502AAFC224D2FD800EE0708 /* HotspotCacheDataManager.swift */,
 				A547E653224BDDBF00A74966 /* DataPersistenceManager.swift */,
 			);
 			path = "Data Persistence";
@@ -252,6 +255,7 @@
 				A547E648224BDD6100A74966 /* SavedView.swift in Sources */,
 				A547E660224BDF2D00A74966 /* Date+Extensions.swift in Sources */,
 				A547E663224BDF7000A74966 /* HotspotDataManager.swift in Sources */,
+				A502AAFD224D2FD800EE0708 /* HotspotCacheDataManager.swift in Sources */,
 				A547E65C224BDE0200A74966 /* AppError.swift in Sources */,
 				09DB68C4224C78BF0079A58B /* UIViewController+Alerts.swift in Sources */,
 				A579B93C224BC86C003525F9 /* MapViewController.swift in Sources */,
