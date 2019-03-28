@@ -52,7 +52,6 @@ class MainMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainview)
-        print(DataPersistenceManager.documentsDirectory())
         setupKeyboardToolbar()
         title = "WiFi Hotspots"
         self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -67,8 +66,10 @@ class MainMapViewController: UIViewController {
     }
     
     private func loadHotspots() {
-        hotspots = HotspotCacheDataManager.loadFromCache()
+        hotspots = HotspotCacheDataManager.loadFromCache().hotspots
+        annotations = HotspotCacheDataManager.loadFromCache().annotations
         searchHotspots = hotspots
+        searchAnnotations = annotations
         if hotspots.isEmpty {
             getHotspots()
         }
