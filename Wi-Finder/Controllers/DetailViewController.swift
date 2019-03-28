@@ -17,23 +17,34 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
-        detailView.infoTextView.text = "Address:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)"
-        detailView.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-        detailView.screenshotButton.addTarget(self, action: #selector(screenshotButtonPressed), for: .touchUpInside)
+        detailView.infoTextView.text = "Address:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)\n\nSSID:\n\(hotspot.ssid)\n\nRemarks:\n\(hotspot.remarks)"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "•••", style: .plain, target: self, action: #selector(showActionSheet))
+    }
+    
+    @objc private func showActionSheet() {
+        let alert = UIAlertController(title: "More Options", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Save Hotspot", style: .default, handler: { (action) in
+            self.saveButtonPressed()
+        }))
+        alert.addAction(UIAlertAction(title: "Take Screenshot", style: .default, handler: { (action) in
+            self.screenshotButtonPressed()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
-    @objc private func saveButtonPressed() {
+    private func saveButtonPressed() {
         if let newHotspot = hotspot {
          HotspotDataManager.addHotspot(hotspot: newHotspot)
             showAlert(title: nil, message: "wifi saved", actionTitle: "OK")
         }
     }
     
-    @objc private func screenshotButtonPressed() {
+    private func screenshotButtonPressed() {
         var screenShotImage: UIImage!
         let layer = UIApplication.shared.keyWindow?.layer
         let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(detailView.mapKitView.frame.size, false, scale)
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, scale)
         guard let context = UIGraphicsGetCurrentContext() else  { return }
         layer?.render(in: context)
         screenShotImage = UIGraphicsGetImageFromCurrentImageContext()
