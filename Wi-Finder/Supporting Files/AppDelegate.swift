@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.rootViewController = launchScreenVC
         self.window?.makeKeyAndVisible()
-        Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(dismissLaunchScreen), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(dismissLaunchScreen), userInfo: nil, repeats: false)
     }
     
     @objc func dismissLaunchScreen() {
