@@ -105,6 +105,7 @@ class MainMapViewController: UIViewController {
     
     
     func updateResultsWithinRadiusOfCurrentLocation(myLocation : CLLocation) {
+        searchHotspots.removeAll()
         for hotspot in hotspots {
             if myLocation.distance(from: CLLocation(latitude: Double(hotspot.lat) ?? 0.0, longitude: Double(hotspot.long) ?? 0.0)) < 200 {
                 searchHotspots.append(hotspot)
