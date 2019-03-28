@@ -46,7 +46,7 @@ final class HotspotAPIClient {
                         let annotation = MKPointAnnotation()
                         annotation.coordinate = CLLocationCoordinate2D.init(latitude: Double(lat) ?? 0.0, longitude: Double(long) ?? 0.0)
                         annotationArray.append(annotation)
-                    }
+                    } 
                     completionHandler(nil, populatingArray, annotationArray)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil, nil)
