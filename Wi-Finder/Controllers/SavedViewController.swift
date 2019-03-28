@@ -27,13 +27,13 @@ class SavedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         savedHotspots = HotspotDataManager.getHotspots()
     }
-
+    
     
     private func  setupTableView() {
         title = "Saved Hotspots"
         savedView.savedTableView.dataSource = self
         savedView.savedTableView.delegate = self
-//        savedView.savedTableView.register(UITableViewCell.CellStyle.subtitle, forCellReuseIdentifier: "SavedCell")
+        //        savedView.savedTableView.register(UITableViewCell.CellStyle.subtitle, forCellReuseIdentifier: "SavedCell")
         savedHotspots = HotspotDataManager.getHotspots()
     }
 }
@@ -59,6 +59,12 @@ extension SavedViewController: UITableViewDataSource {
         let savedHotspot = savedHotspots[indexPath.row]
         cell.textLabel?.text = savedHotspot.locationName
         cell.detailTextLabel?.text = "SSID: " + savedHotspot.ssid
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+       cell.textLabel?.shadowOffset = CGSize(width: 0, height: 2)
+         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+       cell.textLabel?.textColor = .black
+        cell.textLabel?.shadowColor = #colorLiteral(red: 0.9705753922, green: 0.7638127208, blue: 0.4173654318, alpha: 1)
         return cell
     }
     
