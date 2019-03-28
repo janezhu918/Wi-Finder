@@ -55,7 +55,7 @@ class MainMapViewController: UIViewController {
         view.addSubview(mainview)
         setupKeyboardToolbar()
         title = "WiFi Hotspots"
-        self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "locate"), style: .plain, target: self, action: #selector(currentLocationButton))
         mainview.mainTableView.delegate = self
         mainview.mainTableView.dataSource = self
@@ -72,8 +72,10 @@ class MainMapViewController: UIViewController {
         searchHotspots = hotspots
         searchAnnotations = annotations
         mainview.mapView.addAnnotations(self.searchAnnotations)
-        let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
-        self.mainview.mapView.setRegion(region, animated: false)
+        if let firstAnnotation = annotations.first {
+            let region = MKCoordinateRegion(center: firstAnnotation.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
+            self.mainview.mapView.setRegion(region, animated: false)
+        }
         if hotspots.isEmpty {
             getHotspots()
         }
@@ -94,7 +96,10 @@ class MainMapViewController: UIViewController {
                 if let annotations = annotations {
                     self.annotations = annotations
                     self.searchAnnotations = annotations
-                    let region = MKCoordinateRegion(center: self.searchAnnotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
+                    DispatchQueue.main.async {
+                       self.mainview.mapView.addAnnotations(self.searchAnnotations)
+                    }
+                    let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
                     DispatchQueue.main.async {
                         self.mainview.mapView.setRegion(region, animated: false)
                     }
@@ -174,6 +179,7 @@ extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = DetailViewController()
         detailVC.hotspot = searchHotspots[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)

@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 class MainMapView: UIView {
+    var gradient: CAGradientLayer!
     public lazy var search: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
@@ -41,12 +42,22 @@ class MainMapView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
+        setUpMainViewBG()
         commonInit()
-        // initialize cells for TV here
+ 
     }
+    
+    
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    private func setUpMainViewBG() {
+        gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [UIColor(displayP3Red: 255/255, green: 140/255, blue: 132/255, alpha: 1).cgColor, UIColor(displayP3Red: 247/255, green: 195/255, blue: 106/255, alpha: 1).cgColor, UIColor(displayP3Red: 255/255, green: 225/255, blue: 137/255, alpha: 1).cgColor]
+        layer.addSublayer(gradient)
     }
     private func commonInit() {
         setConstraints()
@@ -60,8 +71,8 @@ class MainMapView: UIView {
         mainTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             search.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor), search.leadingAnchor.constraint(equalTo: leadingAnchor), search.trailingAnchor.constraint(equalTo: trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 11), mapView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11), mapView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
-            mainTableView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 0), mainTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0), mainTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0), mainTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            mapView.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 5), mapView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5), mapView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
+            mainTableView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 5), mainTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0), mainTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0), mainTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
             ])
     }
     
