@@ -24,7 +24,10 @@ class MainMapViewController: UIViewController {
     
     private var hotspots = [Hotspot]() {
         didSet {
-            mainview.mainTableView.reloadData()
+            DispatchQueue.main.async {
+                self.mainview.mainTableView.reloadData()
+            }
+           
         }
     }
     private var annotations = [MKPointAnnotation]()
@@ -71,8 +74,10 @@ class MainMapViewController: UIViewController {
         searchHotspots = hotspots
         searchAnnotations = annotations
         mainview.mapView.addAnnotations(self.searchAnnotations)
-        let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
-        self.mainview.mapView.setRegion(region, animated: false)
+        if let firstAnnotation = annotations.first {
+            let region = MKCoordinateRegion(center: firstAnnotation.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
+            self.mainview.mapView.setRegion(region, animated: false)
+        }
         if hotspots.isEmpty {
             getHotspots()
         }
@@ -92,7 +97,10 @@ class MainMapViewController: UIViewController {
                 if let annotations = annotations {
                     self.annotations = annotations
                     self.searchAnnotations = annotations
-                    self.mainview.mapView.addAnnotations(self.searchAnnotations)
+                    DispatchQueue.main.async {
+                       self.mainview.mapView.addAnnotations(self.searchAnnotations)
+                    }
+                    
                     let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
                     DispatchQueue.main.async {
                         self.mainview.mapView.setRegion(region, animated: false)
