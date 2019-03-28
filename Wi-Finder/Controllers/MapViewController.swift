@@ -22,7 +22,11 @@ class MainMapViewController: UIViewController {
         }
     }
     
-    private var hotspots = [Hotspot]()
+    private var hotspots = [Hotspot]() {
+        didSet {
+            mainview.mainTableView.reloadData()
+        }
+    }
     private var annotations = [MKPointAnnotation]()
     private var searchAnnotations = [MKPointAnnotation]() {
         didSet {
@@ -48,6 +52,8 @@ class MainMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mainview)
+        print(DataPersistenceManager.documentsDirectory())
+        setupKeyboardToolbar()
         title = "WiFi Hotspots"
         self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "locate"), style: .plain, target: self, action: #selector(currentLocationButton))
@@ -56,8 +62,16 @@ class MainMapViewController: UIViewController {
         mainview.search.delegate = self
         mainview.mapView.delegate = self
         locationManager.delegate = self
-        getHotspots()
         checkLocationServices()
+        loadHotspots()
+    }
+    
+    private func loadHotspots() {
+        hotspots = HotspotCacheDataManager.loadFromCache()
+        searchHotspots = hotspots
+        if hotspots.isEmpty {
+            getHotspots()
+        }
     }
     
     private func getHotspots() {
@@ -67,6 +81,7 @@ class MainMapViewController: UIViewController {
             } else if let hotspots = hotspots {
                 self.hotspots = hotspots
                 self.searchHotspots = hotspots
+                HotspotCacheDataManager.saveToCache(hotspots: hotspots)
                 DispatchQueue.main.async {
                     self.mainview.mainTableView.reloadData()
                 }
@@ -112,6 +127,21 @@ class MainMapViewController: UIViewController {
             }
         }
     }
+    
+    private func setupKeyboardToolbar() {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done
+            , target: self, action: #selector(doneButtonAction))
+        toolbar.setItems([flexSpace, doneBtn], animated: false)
+        toolbar.sizeToFit()
+        mainview.search.inputAccessoryView = toolbar
+    }
+    //source https://medium.com/@KaushElsewhere/how-to-dismiss-keyboard-in-a-view-controller-of-ios-3b1bfe973ad1
+    @objc private func doneButtonAction() {
+        self.view.endEditing(true)
+    }
+
     
 }
 
@@ -195,7 +225,7 @@ extension MainMapViewController: UISearchBarDelegate {
         self.searchHotspots.removeAll()
         self.searchAnnotations.removeAll()
         
-        guard let text = searchBar.text, let number = Int(text) else {
+        guard let text = searchBar.text, text.count == 5, let number = Int(text) else {
             showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
             return
         }
@@ -204,6 +234,13 @@ extension MainMapViewController: UISearchBarDelegate {
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: Double($0.lat) ?? 0.0, longitude: Double($0.long) ?? 0.0)
             return annotation
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            searchHotspots = hotspots
+            searchAnnotations = annotations
         }
     }
     
