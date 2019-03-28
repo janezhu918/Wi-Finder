@@ -9,14 +9,14 @@
 import UIKit
 
 class SavedViewController: UIViewController {
-let savedView = SavedView()
+    
+    let savedView = SavedView()
+    
     private var savedHotspots = [Hotspot]() {
         didSet {
             self.savedView.savedTableView.reloadData()
         }
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,5 +67,11 @@ extension SavedViewController: UITableViewDataSource {
         detailVC.hotspot = savedHotspots[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        savedHotspots.remove(at: indexPath.row)
+        HotspotDataManager.deleteHotspot(atIndex: indexPath.row)
+    }
+    
     
 }
