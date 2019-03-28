@@ -122,7 +122,12 @@ extension MainMapViewController: CLLocationManagerDelegate {
 }
 
 extension MainMapViewController: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        annotationView.markerTintColor = UIColor.init(displayP3Red: 247/255, green: 195/255, blue: 106/255, alpha: 1)
+        annotationView.glyphImage =  UIImage(named: "wifi")
+        return annotationView
+    }
 }
 
 extension MainMapViewController: UISearchBarDelegate {
