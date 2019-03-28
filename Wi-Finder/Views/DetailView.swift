@@ -10,9 +10,12 @@ import UIKit
 import MapKit
 
 class DetailView: UIView {
-
+ var gradient: CAGradientLayer!
     public lazy var mapKitView: MKMapView = {
         let mk = MKMapView()
+        mk.layer.cornerRadius = 10
+     mk.layer.borderColor = #colorLiteral(red: 1, green: 0.6097013354, blue: 0.4944909215, alpha: 1)
+        mk.layer.borderWidth = 3
         return mk
     }()
     

@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         launchScreen()
         return true
     }
@@ -34,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 window = UIWindow.init(frame: UIScreen.main.bounds)
                 window?.rootViewController = MainTabBar()
                 window?.makeKeyAndVisible()
+               self.window?.tintColor = #colorLiteral(red: 0.9980230927, green: 0.5507860184, blue: 0.5175441504, alpha: 1)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
