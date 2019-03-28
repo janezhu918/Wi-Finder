@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05F1AF78224D123D0051D4FC /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1AF77224D123D0051D4FC /* LaunchViewController.swift */; };
+		05F1AF7A224D12790051D4FC /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1AF79224D12790051D4FC /* LaunchView.swift */; };
 		09DB68C4224C78BF0079A58B /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DB68C3224C78BF0079A58B /* UIViewController+Alerts.swift */; };
 		A547E644224BDD4B00A74966 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E643224BDD4B00A74966 /* DetailViewController.swift */; };
 		A547E646224BDD5700A74966 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547E645224BDD5700A74966 /* SavedViewController.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05F1AF77224D123D0051D4FC /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		05F1AF79224D12790051D4FC /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		09DB68C3224C78BF0079A58B /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		A547E643224BDD4B00A74966 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A547E645224BDD5700A74966 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 				A547E64B224BDD6C00A74966 /* MapView.swift */,
 				A547E649224BDD6600A74966 /* DetailView.swift */,
 				A547E647224BDD6100A74966 /* SavedView.swift */,
+				05F1AF79224D12790051D4FC /* LaunchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -79,6 +84,7 @@
 				A579B93B224BC86C003525F9 /* MapViewController.swift */,
 				A547E643224BDD4B00A74966 /* DetailViewController.swift */,
 				A547E645224BDD5700A74966 /* SavedViewController.swift */,
+				05F1AF77224D123D0051D4FC /* LaunchViewController.swift */,
 				A547E664224BE07500A74966 /* MainTabBar.swift */,
 			);
 			path = Controllers;
@@ -239,6 +245,8 @@
 				A547E665224BE07500A74966 /* MainTabBar.swift in Sources */,
 				A547E644224BDD4B00A74966 /* DetailViewController.swift in Sources */,
 				A547E659224BDDEA00A74966 /* NetworkHelper.swift in Sources */,
+				05F1AF7A224D12790051D4FC /* LaunchView.swift in Sources */,
+				05F1AF78224D123D0051D4FC /* LaunchViewController.swift in Sources */,
 				A547E64A224BDD6600A74966 /* DetailView.swift in Sources */,
 				A547E65E224BDE1300A74966 /* HotspotAPIClient.swift in Sources */,
 				A547E648224BDD6100A74966 /* SavedView.swift in Sources */,
