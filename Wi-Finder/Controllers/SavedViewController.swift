@@ -10,7 +10,11 @@ import UIKit
 
 class SavedViewController: UIViewController {
 let savedView = SavedView()
-    
+    private var savedHotspots = [Hotspot]() {
+        didSet {
+            self.savedView.savedTableView.reloadData()
+        }
+    }
     
     
     
@@ -25,6 +29,7 @@ let savedView = SavedView()
         title = "Saved Hotspots"
         savedView.savedTableView.dataSource = self
         savedView.savedTableView.delegate = self
+        savedHotspots = HotspotDataManager.getHotspots()
     }
 }
 
@@ -36,12 +41,14 @@ extension SavedViewController: UITableViewDelegate {
 
 extension SavedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return savedHotspots.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "SavedCell", for: indexPath)
-        cell.textLabel?.text = indexPath.row.description
+      let savedHotspot = savedHotspots[indexPath.row]
+        cell.textLabel?.text = savedHotspot.locationName
+        cell.detailTextLabel?.text = savedHotspot.city
         return cell
     }
     

@@ -26,6 +26,7 @@ class DetailViewController: UIViewController {
     @objc private func saveButtonPressed() {
         if let newHotspot = hotspot {
          HotspotDataManager.addHotspot(hotspot: newHotspot)
+            showAlert(title: nil, message: "wifi saved", actionTitle: "OK")
         }
     }
     
