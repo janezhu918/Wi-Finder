@@ -122,7 +122,26 @@ extension MainMapViewController: CLLocationManagerDelegate {
 }
 
 extension MainMapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        annotationView.markerTintColor = UIColor.init(displayP3Red: 247/255, green: 195/255, blue: 106/255, alpha: 1)
+        annotationView.glyphImage =  UIImage(named: "wifi")
+        return annotationView
+    }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let detailVC = DetailViewController()
+        guard let annotation = view.annotation else {
+            return
+        }
+        let index = hotspots.index{ Double($0.lat) == annotation.coordinate.latitude && Double($0.long) == annotation.coordinate.longitude}
+        if let SelectedHotspot = index {
+            let hotspot = hotspots[SelectedHotspot]
+            detailVC.hotspot = hotspot
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
+        
+    }
 }
 
 extension MainMapViewController: UISearchBarDelegate {
