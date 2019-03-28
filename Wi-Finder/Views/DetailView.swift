@@ -22,7 +22,7 @@ class DetailView: UIView {
     public lazy var infoTextView: UITextView = {
        let tv = UITextView()
         tv.dataDetectorTypes = [.address]
-        tv.backgroundColor = .white
+        tv.backgroundColor = .clear
         tv.textAlignment = .center
         tv.isEditable = false
         tv.font = .systemFont(ofSize: 16)
@@ -31,12 +31,19 @@ class DetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
+        setupLoginViewBackground()
         commonInit()
     }
 
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    private func setupLoginViewBackground()  {
+        gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [UIColor(displayP3Red: 255/255, green: 140/255, blue: 132/255, alpha: 1).cgColor, UIColor(displayP3Red: 247/255, green: 195/255, blue: 106/255, alpha: 1).cgColor, UIColor(displayP3Red: 255/255, green: 225/255, blue: 137/255, alpha: 1).cgColor]
+        layer.addSublayer(gradient)
     }
     
     private func commonInit() {

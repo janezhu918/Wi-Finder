@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 
 class MainMapView: UIView {
-
     public lazy var search: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
