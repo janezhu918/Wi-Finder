@@ -9,14 +9,14 @@
 import UIKit
 
 class SavedViewController: UIViewController {
-let savedView = SavedView()
+    
+    let savedView = SavedView()
+    
     private var savedHotspots = [Hotspot]() {
         didSet {
             self.savedView.savedTableView.reloadData()
         }
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ let savedView = SavedView()
         title = "Saved Hotspots"
         savedView.savedTableView.dataSource = self
         savedView.savedTableView.delegate = self
+//        savedView.savedTableView.register(UITableViewCell.CellStyle.subtitle, forCellReuseIdentifier: "SavedCell")
         savedHotspots = HotspotDataManager.getHotspots()
     }
 }
@@ -49,16 +50,28 @@ extension SavedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCell(withIdentifier: "SavedCell", for: indexPath)
-      let savedHotspot = savedHotspots[indexPath.row]
+        let cell: UITableViewCell = {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SavedCell") else {
+                return UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "SavedCell")
+            }
+            return cell
+        }()
+        let savedHotspot = savedHotspots[indexPath.row]
         cell.textLabel?.text = savedHotspot.locationName
-        cell.detailTextLabel?.text = savedHotspot.city
+        cell.detailTextLabel?.text = "SSID: " + savedHotspot.ssid
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
+        detailVC.hotspot = savedHotspots[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        savedHotspots.remove(at: indexPath.row)
+        HotspotDataManager.deleteHotspot(atIndex: indexPath.row)
+    }
+    
     
 }

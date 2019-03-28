@@ -10,7 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
+
 class MainMapViewController: UIViewController {
+  
     let mainview = MainMapView()
     private let locationManager = CLLocationManager()
     private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: -73.9485)
@@ -51,6 +53,7 @@ class MainMapViewController: UIViewController {
                 print(error)
             } else if let hotspots = hotspots {
                 self.hotspots = hotspots
+                self.searchHotspots = hotspots
                 DispatchQueue.main.async {
                     self.mainview.mainTableView.reloadData()
                 }
@@ -81,22 +84,35 @@ class MainMapViewController: UIViewController {
     
     @objc private func currentLocationButton() {
          mainview.mapView.setCenter(myCurrentArea.center, animated: true)
+        let myLocation = CLLocation(latitude: myCurrentArea.center.latitude, longitude: myCurrentArea.center.longitude)
+        updateResultsWithinRadiusOfCurrentLocation(myLocation: myLocation)
         
+    }
+    
+    
+    func updateResultsWithinRadiusOfCurrentLocation(myLocation : CLLocation) {
+        for hotspot in hotspots {
+            if myLocation.distance(from: CLLocation(latitude: Double(hotspot.lat) ?? 0.0, longitude: Double(hotspot.long) ?? 0.0)) < 200 {
+                searchHotspots.append(hotspot)
+            }
+        }
     }
 
 }
 
 extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hotspots.count
+        return searchHotspots.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let hotspotToSet = hotspots[indexPath.row]
-        cell.textLabel?.text = hotspotToSet.locationName
-        cell.detailTextLabel?.text = hotspotToSet.ssid
-        return cell
-    }
+            let cell = UITableViewCell()
+            let hotspotToSet = searchHotspots[indexPath.row]
+            cell.textLabel?.text = hotspotToSet.locationName
+            cell.detailTextLabel?.text = hotspotToSet.ssid
+            return cell
+        }
+     
+    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "WiFi Hotspots in this area"
@@ -104,7 +120,7 @@ extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
-        detailVC.hotspot = hotspots[indexPath.row]
+        detailVC.hotspot = searchHotspots[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -159,11 +175,7 @@ extension MainMapViewController: UISearchBarDelegate {
         showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
             return
         }
-        for hotspot in hotspots where hotspot.zipcode == String(number) {
-          self.searchHotspots.append(hotspot)
-            var annotation: MKAnnotation!
-        
-              self.mainview.mainTableView.reloadData()
+        searchHotspots = hotspots.filter{ $0.zipcode == String(number)}
         }
     }
-}
+

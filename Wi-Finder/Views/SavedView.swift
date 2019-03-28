@@ -12,7 +12,6 @@ class SavedView: UIView {
     lazy var savedTableView: UITableView = {
         let tableView = UITableView()
         tableView.tableFooterView  = UIView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SavedCell")
         return tableView
     }()
     
