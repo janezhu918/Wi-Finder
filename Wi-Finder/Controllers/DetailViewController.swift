@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailViewController: UIViewController {
     
@@ -17,23 +18,47 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
-        detailView.infoTextView.text = "Address:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)"
-        detailView.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-        detailView.screenshotButton.addTarget(self, action: #selector(screenshotButtonPressed), for: .touchUpInside)
+        detailView.infoTextView.text = "Name:\n\(hotspot.locationName)\n\nAddress:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)\n\nSSID:\n\(hotspot.ssid)\n\nRemarks:\n\(hotspot.remarks)"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "•••", style: .plain, target: self, action: #selector(showActionSheet))
+        setupMap()
+    }
+    
+    private func setupMap() {
+        detailView.mapKitView.delegate = self
+        let regionRadius: CLLocationDistance = 650
+        let initialLocation = CLLocation(latitude: Double(hotspot!.lat) ?? 0.0, longitude: Double(hotspot!.long) ?? 0.0)
+        let coordinateRegion = MKCoordinateRegion(center: initialLocation.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        detailView.mapKitView.setRegion(coordinateRegion, animated: false)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: initialLocation.coordinate.latitude, longitude: initialLocation.coordinate.longitude)
+        annotation.title = hotspot.locationName
+        detailView.mapKitView.addAnnotation(annotation)
+    }
+    
+    @objc private func showActionSheet() {
+        let alert = UIAlertController(title: "More Options", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Save Hotspot", style: .default, handler: { (action) in
+            self.saveButtonPressed()
+        }))
+        alert.addAction(UIAlertAction(title: "Take Screenshot", style: .default, handler: { (action) in
+            self.screenshotButtonPressed()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
-    @objc private func saveButtonPressed() {
+    private func saveButtonPressed() {
         if let newHotspot = hotspot {
          HotspotDataManager.addHotspot(hotspot: newHotspot)
             showAlert(title: nil, message: "wifi saved", actionTitle: "OK")
         }
     }
     
-    @objc private func screenshotButtonPressed() {
+    private func screenshotButtonPressed() {
         var screenShotImage: UIImage!
         let layer = UIApplication.shared.keyWindow?.layer
         let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(detailView.mapKitView.frame.size, false, scale)
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, false, scale)
         guard let context = UIGraphicsGetCurrentContext() else  { return }
         layer?.render(in: context)
         screenShotImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -44,4 +69,13 @@ class DetailViewController: UIViewController {
         }
     }
     
+}
+
+extension DetailViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        annotationView.markerTintColor = UIColor.init(displayP3Red: 247/255, green: 195/255, blue: 106/255, alpha: 1)
+        annotationView.glyphImage =  UIImage(named: "wifi")
+        return annotationView
+    }
 }
