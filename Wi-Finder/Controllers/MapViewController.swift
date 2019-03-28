@@ -10,7 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
+
 class MainMapViewController: UIViewController {
+  
     let mainview = MainMapView()
     private let locationManager = CLLocationManager()
     private var searchCoordinates = CLLocationCoordinate2D(latitude: 40.7447, longitude: -73.9485)
@@ -21,8 +23,14 @@ class MainMapViewController: UIViewController {
         }
     
     private var hotspots = [Hotspot]()
-    private var visableOnMapHotSpots = [Hotspot]()
     private var annotations = [MKPointAnnotation]()
+    private var searchHotspots = [Hotspot]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.mainview.mainTableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +53,7 @@ class MainMapViewController: UIViewController {
                 print(error)
             } else if let hotspots = hotspots {
                 self.hotspots = hotspots
+                self.searchHotspots = hotspots
                 DispatchQueue.main.async {
                     self.mainview.mainTableView.reloadData()
                 }
@@ -55,7 +64,6 @@ class MainMapViewController: UIViewController {
                     DispatchQueue.main.async {
                                             self.mainview.mapView.setRegion(region, animated: false)
                     }
-//                    self.mainview.mapView.setRegion(annotations, animated: <#T##Bool#>)
                 }
             }
         }
@@ -85,26 +93,26 @@ class MainMapViewController: UIViewController {
     func updateResultsWithinRadiusOfCurrentLocation(myLocation : CLLocation) {
         for hotspot in hotspots {
             if myLocation.distance(from: CLLocation(latitude: Double(hotspot.lat) ?? 0.0, longitude: Double(hotspot.long) ?? 0.0)) < 200 {
-                visableOnMapHotSpots.append(hotspot)
+                searchHotspots.append(hotspot)
             }
         }
-
-
     }
 
 }
 
 extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hotspots.count
+        return searchHotspots.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let hotspotToSet = hotspots[indexPath.row]
-        cell.textLabel?.text = hotspotToSet.locationName
-        cell.detailTextLabel?.text = hotspotToSet.ssid
-        return cell
-    }
+            let cell = UITableViewCell()
+            let hotspotToSet = searchHotspots[indexPath.row]
+            cell.textLabel?.text = hotspotToSet.locationName
+            cell.detailTextLabel?.text = hotspotToSet.ssid
+            return cell
+        }
+     
+    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "WiFi Hotspots in this area"
@@ -113,7 +121,7 @@ extension MainMapViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = DetailViewController()
-        detailVC.hotspot = hotspots[indexPath.row]
+        detailVC.hotspot = searchHotspots[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -163,5 +171,12 @@ extension MainMapViewController: MKMapViewDelegate {
 extension MainMapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        self.searchHotspots.removeAll()
+       guard let text = searchBar.text, let number = Int(text) else {
+        showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
+            return
+        }
+        searchHotspots = hotspots.filter{ $0.zipcode == String(number)}
+        }
     }
-}
+

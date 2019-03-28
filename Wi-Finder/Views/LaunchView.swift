@@ -12,10 +12,8 @@ class LaunchView: UIView {
 
     public lazy var launchImage: UIImageView = {
         let launchImg = UIImageView()
-        launchImg.image = UIImage(named: "wifi")
+        launchImg.image = UIImage(named: "wifinder")
         launchImg.contentMode = .scaleAspectFit
-        launchImg.layer.borderColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-        launchImg.layer.borderWidth = 4
         return launchImg
     }()
 
@@ -37,7 +35,7 @@ class LaunchView: UIView {
         launchImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            launchImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35), launchImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75), launchImage.centerXAnchor.constraint(equalTo: self.centerXAnchor), launchImage.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            launchImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1), launchImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1), launchImage.centerXAnchor.constraint(equalTo: self.centerXAnchor), launchImage.centerYAnchor.constraint(equalTo: self.centerYAnchor)
             ])
     }
 }
