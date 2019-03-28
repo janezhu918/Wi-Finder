@@ -28,7 +28,7 @@ class MainMapViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.mainview.mapView.reloadInputViews()
-                self.mainview.mapView.addAnnotations(self.searchAnnotations)
+//                self.mainview.mapView.addAnnotations(self.searchAnnotations)
                 guard !self.searchAnnotations.isEmpty else {
                     return
                 }
@@ -105,6 +105,7 @@ class MainMapViewController: UIViewController {
     
     
     func updateResultsWithinRadiusOfCurrentLocation(myLocation : CLLocation) {
+        searchHotspots.removeAll()
         for hotspot in hotspots {
             if myLocation.distance(from: CLLocation(latitude: Double(hotspot.lat) ?? 0.0, longitude: Double(hotspot.long) ?? 0.0)) < 200 {
                 searchHotspots.append(hotspot)
