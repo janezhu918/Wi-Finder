@@ -24,6 +24,19 @@ class MainMapViewController: UIViewController {
     
     private var hotspots = [Hotspot]()
     private var annotations = [MKPointAnnotation]()
+    private var searchAnnotations = [MKPointAnnotation]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.mainview.mapView.reloadInputViews()
+                self.mainview.mapView.addAnnotations(self.searchAnnotations)
+                guard !self.searchAnnotations.isEmpty else {
+                    return
+                }
+                let region = MKCoordinateRegion(center: self.searchAnnotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
+                self.mainview.mapView.setRegion(region, animated: false)
+            }
+        }
+    }
     private var searchHotspots = [Hotspot]() {
         didSet {
             DispatchQueue.main.async {
@@ -59,7 +72,8 @@ class MainMapViewController: UIViewController {
                 }
                 if let annotations = annotations {
                     self.annotations = annotations
-                    self.mainview.mapView.addAnnotations(annotations)
+                    self.searchAnnotations = annotations
+                    self.mainview.mapView.addAnnotations(self.searchAnnotations)
                     let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
                     DispatchQueue.main.async {
                                             self.mainview.mapView.setRegion(region, animated: false)
@@ -170,12 +184,21 @@ extension MainMapViewController: MKMapViewDelegate {
 extension MainMapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        mainview.mapView.removeAnnotations(searchAnnotations)
         self.searchHotspots.removeAll()
+        self.searchAnnotations.removeAll()
+        
        guard let text = searchBar.text, let number = Int(text) else {
         showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
             return
         }
-        searchHotspots = hotspots.filter{ $0.zipcode == String(number)}
+        searchHotspots = hotspots.filter{$0.zipcode == String(number)}
+      searchAnnotations = searchHotspots.map {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: Double($0.lat) ?? 0.0, longitude: Double($0.long) ?? 0.0)
+           return annotation
         }
+        }
+  
     }
 
