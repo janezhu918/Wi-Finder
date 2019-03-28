@@ -18,7 +18,11 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
-        detailView.infoTextView.text = "Name:\n\(hotspot.locationName)\n\nAddress:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)\n\nSSID:\n\(hotspot.ssid)\n\nRemarks:\n\(hotspot.remarks)"
+        if hotspot.remarks != "" {
+            detailView.infoTextView.text = "Name:\n\(hotspot.locationName)\n\nAddress:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)\n\nSSID:\n\(hotspot.ssid)\n\nRemarks:\n\(hotspot.remarks)"
+        } else {
+            detailView.infoTextView.text = "Name:\n\(hotspot.locationName)\n\nAddress:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)\n\nSSID:\n\(hotspot.ssid)"
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "•••", style: .plain, target: self, action: #selector(showActionSheet))
         setupMap()
     }
@@ -50,7 +54,7 @@ class DetailViewController: UIViewController {
     private func saveButtonPressed() {
         if let newHotspot = hotspot {
          HotspotDataManager.addHotspot(hotspot: newHotspot)
-            showAlert(title: nil, message: "wifi saved", actionTitle: "OK")
+            showAlert(title: nil, message: "Hotspot Saved", actionTitle: "OK")
         }
     }
     
@@ -65,7 +69,7 @@ class DetailViewController: UIViewController {
         UIGraphicsEndImageContext()
         if let image = screenShotImage {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-            showAlert(title: nil, message: "image saved", actionTitle: "ok")
+            showAlert(title: nil, message: "Image Saved", actionTitle: "OK")
         }
     }
     
