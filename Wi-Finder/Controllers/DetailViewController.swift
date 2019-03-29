@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import AudioToolbox
 
 class DetailViewController: UIViewController {
     let detailView = DetailView()
@@ -66,6 +67,7 @@ class DetailViewController: UIViewController {
         UIGraphicsEndImageContext()
         if let image = screenShotImage {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            AudioServicesPlaySystemSound(1108);
             showAlert(title: nil, message: "Image Saved", actionTitle: "OK")
         }
     }
