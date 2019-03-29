@@ -1,8 +1,8 @@
 # Wi-Finder
-An app that allows users to find free wifi hotspots in New York City based on zipcode or current user location.
+An app that allows users to find free wifi hotspots in New York City based on zip code or current user location.
 
 ## Introduction 
-In the world we live in today, most people are always attached to their mobile phones or laptop and connected to the internet, whether you are a student, freelancer, software developer, or just someone who wants to share on social media.  However, not everyone has an unlimited data package on their phone plan or a WiFi connection at home. International tourists visiting New York City may not want to purchase a phone just for the short period of time that they're here. Luckily, New York City offers numerous free WiFi hotspots for people to use.  These hotspots are offered by LinkNYC kiosks, public libraries, subway stations, tourist landmarks, and etc. This app enables users to find the closest free WiFi connection based on their zipcode or current location. Users can access the location, network name, and notes about these hotspots both online and offline (while they're getting to their next free WiFi connection).  Users can save information about a WiFi hotspot to the app or to their photo library as a screenshot with the tap of a button. 
+In the world we live in today, most people are always attached to their mobile phones or laptop and connected to the internet, whether you are a student, freelancer, software developer, or just someone who wants to share on social media.  However, not everyone has an unlimited data package on their phone plan or a WiFi connection at home. International tourists visiting New York City may not want to purchase a phone just for the short period of time that they're here. Luckily, New York City offers numerous free WiFi hotspots for people to use.  These hotspots are offered by LinkNYC kiosks, public libraries, subway stations, tourist landmarks, and etc. This app enables users to find the closest free WiFi connection based on their zip code or current location. Users can access the location, network name, and notes about these hotspots both online and offline (while they're getting to their next free WiFi connection).  Users can save information about a WiFi hotspot to the app or to their photo library as a screenshot with the tap of a button. 
 
 ## Technologies
 - Swift 4
@@ -16,7 +16,7 @@ $ open Wi-Finder.xcodeproj/
 ```
 
 ## Usage Example
-Start by granting the app acesss to your current location; this will enable to app to locate the free hotspots closest to you in New York City. If you are traveling to a specific area, type in the zipcode into the search bar.  The map and the list will update themselves to display the hotpots in that zipcode. 
+Start by granting the app acesss to your current location; this will enable to app to locate the free hotspots closest to you in New York City. If you are traveling to a specific area, type in the zip code into the search bar.  The map and the list will update themselves to display the hotpots in that zip code. 
 
 To view the detail about the WiFi hotspot, simply tap on the map or its name on the list view. This will bring you to a screen that displays the name, map, exact address, network name, and notes (connectin speed or time limit) about this WiFi connection.  
 
