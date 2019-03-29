@@ -57,7 +57,7 @@ class MainMapViewController: UIViewController {
         view.addSubview(mainview)
         setupKeyboardToolbar()
         title = "WiFi Hotspots"
-        self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "locate"), style: .plain, target: self, action: #selector(currentLocationButton))
         mainview.mainTableView.delegate = self
         mainview.mainTableView.dataSource = self
