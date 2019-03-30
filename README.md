@@ -35,3 +35,9 @@ The app is designed to be fully accessible offline. So if you do not have a conn
 
 ## Links
 [Trello](https://trello.com/b/vvdrPeYr/hackathon-wifi-on)
+
+## Contributors
+[Oniel Rosario](https://github.com/onielrosario)
+[Pritesh Nadiadhara](https://github.com/PNadiadhara)
+[Genesis Mosquera](https://github.com/GMosquera1)
+[Jane Zhu](https://github.com/janezhu1618)
