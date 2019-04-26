@@ -10,10 +10,8 @@ import UIKit
 import MapKit
 
 class MainMapView: UIView {
-<<<<<<< HEAD
     var gradient: CAGradientLayer!
-=======
->>>>>>> 13f8060fbdd08b430bccd1a4b8a132a9c6a4fbc4
+
     public lazy var search: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.backgroundColor = UIColor.blue.withAlphaComponent(0.1)

@@ -97,15 +97,12 @@ class MainMapViewController: UIViewController {
                 if let annotations = annotations {
                     self.annotations = annotations
                     self.searchAnnotations = annotations
-<<<<<<< HEAD
                     DispatchQueue.main.async {
                        self.mainview.mapView.addAnnotations(self.searchAnnotations)
                     }
                     
-                    let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
-=======
+//                    let region = MKCoordinateRegion(center: annotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
                     let region = MKCoordinateRegion(center: self.searchAnnotations.first!.coordinate, latitudinalMeters: 2400, longitudinalMeters: 2400)
->>>>>>> 13f8060fbdd08b430bccd1a4b8a132a9c6a4fbc4
                     DispatchQueue.main.async {
                         self.mainview.mapView.setRegion(region, animated: false)
                     }
@@ -240,12 +237,8 @@ extension MainMapViewController: UISearchBarDelegate {
         mainview.mapView.removeAnnotations(searchAnnotations)
         self.searchHotspots.removeAll()
         self.searchAnnotations.removeAll()
-<<<<<<< HEAD
-        
-        guard let text = searchBar.text, text.count == 5, let number = Int(text) else {
-=======
+
         guard let text = searchBar.text, let number = Int(text), text.count == 5 else {
->>>>>>> 13f8060fbdd08b430bccd1a4b8a132a9c6a4fbc4
             showAlert(title: nil, message: "enter valid zipcode", actionTitle: "OK")
             return
         }
