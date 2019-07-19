@@ -36,7 +36,7 @@ class MainMapView: UIView {
         mainTV.backgroundColor = #colorLiteral(red: 1, green: 0.8813299537, blue: 0.5384758115, alpha: 1)
         mainTV.sectionIndexColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
         mainTV.tableFooterView = UIView()
-        mainTV.separatorStyle = .none
+//        mainTV.separatorStyle = .none
         return mainTV
     }()
     
