@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App needs permission to update location</string>
+	<string>Wi-Finder needs access to your location to locate nearby hotspots</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Wifinder need access to your photo library</string>
+	<string>Wi-Finder needs access to your photo library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
