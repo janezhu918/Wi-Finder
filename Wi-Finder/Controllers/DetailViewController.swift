@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
         } else {
             detailView.infoTextView.text = "Name:\n\(hotspot.locationName)\n\nAddress:\n\(hotspot.address)\n \(hotspot.city), NY \(hotspot.zipcode)\n\nSSID:\n\(hotspot.ssid)"
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "•••", style: .plain, target: self, action: #selector(showActionSheet))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "•••", style: .plain, target: self, action: #selector(showActionAlert))
         setupMap()
     }
     
@@ -37,8 +37,8 @@ class DetailViewController: UIViewController {
         detailView.mapKitView.addAnnotation(annotation)
     }
     
-    @objc private func showActionSheet() {
-        let alert = UIAlertController(title: "More Options", message: "", preferredStyle: .actionSheet)
+    @objc private func showActionAlert() {
+        let alert = UIAlertController(title: "More Options", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Save Hotspot", style: .default, handler: { (action) in
             self.saveButtonPressed()
         }))
